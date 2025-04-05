@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,12 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				gymbro: {
+					orange: '#F97316',
+					black: '#000000',
+					darkGray: '#222222',
+					lightGray: '#F1F1F1'
 				}
 			},
 			borderRadius: {
