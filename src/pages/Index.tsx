@@ -8,6 +8,7 @@ import PublicationSection from "@/components/PublicationSection";
 import ProgramsSection from "@/components/ProgramsSection";
 import TrainersSection from "@/components/TrainersSection";
 import EventsSection from "@/components/EventsSection";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -22,6 +23,7 @@ const Index = () => {
       <ProgramsSection />
       <TrainersSection />
       <EventsSection />
+      <ContactSection />
       <Footer />
     </div>
   );

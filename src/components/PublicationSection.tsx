@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { BookOpen, MessageSquare } from "lucide-react";
+import { BookOpen, MessageSquare, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,6 +21,12 @@ interface Comment {
   name: string;
   content: string;
   date: string;
+}
+
+interface TeamMember {
+  name: string;
+  title: string;
+  image: string;
 }
 
 const PublicationSection = () => {
@@ -51,6 +57,29 @@ const PublicationSection = () => {
       comments: []
     }
   ]);
+
+  const [teamMembers] = useState<TeamMember[]>([
+    {
+      name: "Ana Milinkovic",
+      title: "Editor in Chief & Publisher",
+      image: "/images/publication-editor.jpg"
+    },
+    {
+      name: "Kaylen White",
+      title: "Head of Marketing",
+      image: "/images/publication-marketing.jpg"
+    },
+    {
+      name: "Maria Vukojevic",
+      title: "Writer",
+      image: "/images/publication-writer1.jpg"
+    },
+    {
+      name: "Eva Milinković",
+      title: "Writer",
+      image: "/images/publication-writer2.jpg"
+    }
+  ]);
   
   const [commentText, setCommentText] = useState("");
   const [selectedArticleId, setSelectedArticleId] = useState<number | null>(null);
@@ -72,6 +101,29 @@ const PublicationSection = () => {
         </p>
       </div>
       
+      {/* Publication Team */}
+      <div className="mb-16">
+        <h3 className="text-2xl font-bold text-center text-gymbro-orange mb-8 flex items-center justify-center">
+          <Users className="mr-2" /> Publication Team
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {teamMembers.map((member, index) => (
+            <div key={index} className="text-center">
+              <div className="mb-4 aspect-square overflow-hidden rounded-full mx-auto w-32 h-32 border-2 border-gymbro-orange">
+                <img 
+                  src={member.image} 
+                  alt={member.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h4 className="text-lg font-bold text-white">{member.name}</h4>
+              <p className="text-gray-400">{member.title}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Articles */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {articles.map((article) => (
           <Card key={article.id} className="bg-gymbro-darkGray text-white border border-gray-800">

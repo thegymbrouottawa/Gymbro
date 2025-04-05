@@ -20,7 +20,62 @@ const ExecutivesSection = () => {
       image: "/images/president.jpg",
       bio: "As the President of The GymBro, Farnam leads the club with passion and dedication to fitness and student wellbeing."
     },
-    // You can add more executive members here
+    {
+      id: 2,
+      name: "Ethan S. Tran",
+      title: "VP of Internal Affairs",
+      image: "/images/vp-internal.jpg",
+      bio: "Ethan oversees the internal operations of the club, ensuring everything runs smoothly for our members."
+    },
+    {
+      id: 3,
+      name: "Diana Zinovjeva",
+      title: "VP of External Affairs & Managing Director for The GymBro Podcast",
+      image: "/images/vp-external.jpg",
+      bio: "Diana manages external partnerships and directs The GymBro Podcast, bringing fitness knowledge to the student community."
+    },
+    {
+      id: 4,
+      name: "Cristophe Lemieux",
+      title: "VP of Finance",
+      image: "/images/vp-finance.jpg",
+      bio: "Cristophe manages the club's financial resources to ensure sustainable operations and accessibility of programs."
+    },
+    {
+      id: 5,
+      name: "Noah Ramos",
+      title: "VP of Marketing",
+      image: "/images/vp-marketing.jpg",
+      bio: "Noah leads our marketing strategies to expand our reach and promote fitness awareness throughout campus."
+    },
+    {
+      id: 6,
+      name: "Chenyu Bi",
+      title: "VP of Bilingualism",
+      image: "/images/vp-bilingualism.jpg",
+      bio: "Chenyu ensures our content and communications are accessible to both English and French speaking students."
+    },
+    {
+      id: 7,
+      name: "Omid Yeganeh",
+      title: "VP of Francophone",
+      image: "/images/vp-francophone.jpg",
+      bio: "Omid focuses on outreach and support for the francophone student community at UOttawa."
+    },
+    {
+      id: 8,
+      name: "Salma Belfaiz",
+      title: "VP of Communication",
+      image: "/images/vp-communication.jpg",
+      bio: "Salma manages all club communications, keeping members informed and engaged with our activities."
+    },
+    {
+      id: 9,
+      name: "Sarah Johnson",
+      title: "VP of Social Affairs",
+      image: "/images/vp-social.jpg",
+      bio: "Sarah organizes social events and activities to strengthen our fitness community and build relationships."
+    }
   ]);
 
   return (
