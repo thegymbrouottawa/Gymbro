@@ -45,9 +45,9 @@ const AboutSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           <div className="md:col-span-1">
             <img 
-              src="/images/founder.jpg" 
+              src="/lovable-uploads/4cb05fe8-ef36-4be0-8587-cad866e313af.png" 
               alt="Hanif Ehsani" 
-              className="w-full h-auto rounded-full shadow-lg aspect-square object-cover"
+              className="w-full h-auto rounded-lg shadow-lg object-cover"
             />
           </div>
           <div className="md:col-span-2">
