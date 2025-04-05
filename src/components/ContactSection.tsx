@@ -1,5 +1,5 @@
 
-import { Mail, Instagram, Linkedin, Link as LinkIcon } from "lucide-react";
+import { Mail, Instagram, Linkedin, Link as LinkIcon, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Section from "./Section";
 
@@ -29,7 +29,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <Section id="contact" title="Contact Us" background="black">
+    <Section id="contact" title="Contact Us" background="dark">
       <div className="max-w-3xl mx-auto text-center">
         <p className="text-lg mb-8">
           Have questions about The GymBro or interested in joining our community? 
@@ -58,6 +58,13 @@ const ContactSection = () => {
               </div>
             </a>
           ))}
+        </div>
+
+        <div className="mt-8 flex items-center justify-center">
+          <MapPin className="w-5 h-5 mr-2 text-gymbro-orange" />
+          <p className="text-md text-gray-300">
+            85 University Private #7, Ottawa, ON K1N 6N5
+          </p>
         </div>
 
         <div className="mt-12">
