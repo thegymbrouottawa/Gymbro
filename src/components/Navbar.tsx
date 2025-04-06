@@ -28,6 +28,7 @@ const Navbar = () => {
     { name: "Publication", href: "#publication" },
     { name: "Programs", href: "#programs" },
     { name: "Trainers", href: "#trainers" },
+    { name: "Gallery", href: "#gallery" },
     { name: "Events", href: "#events" },
     { name: "Contact", href: "#contact" }
   ];
@@ -43,11 +44,14 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center">
-            <img 
-              src="/lovable-uploads/5a89db8d-9d11-4a95-bed1-46c0f2a159f1.png" 
-              alt="The GymBro Logo" 
-              className="h-12 md:h-14" 
-            />
+            {/* Updated logo with background removed and orange tint applied */}
+            <div className="relative h-14 md:h-16 w-auto">
+              <img 
+                src="/lovable-uploads/5a89db8d-9d11-4a95-bed1-46c0f2a159f1.png" 
+                alt="The GymBro Logo" 
+                className="h-full w-auto filter brightness-125 drop-shadow-[0_0_5px_rgba(255,128,0,0.3)]" 
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
