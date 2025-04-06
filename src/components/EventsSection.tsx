@@ -19,11 +19,11 @@ const EventsSection = () => {
     {
       id: 1,
       title: "Students Life Award 2025",
-      date: "March 15, 2025",
-      location: "University Center",
+      date: "April 4, 2025",
+      location: "11 Colonel By Dr, Ottawa, ON K1N 9J1",
       description: "The GymBro club is honored to receive the Sports Club of the Year award at the annual Student Life Awards ceremony.",
       type: "award",
-      image: "/lovable-uploads/ab79bb4a-2972-4650-b07f-7f76a7fe1a00.png"
+      image: "/lovable-uploads/c810e4f0-4dfe-4015-8351-942038396c88.png"
     },
     {
       id: 2,
@@ -51,7 +51,7 @@ const EventsSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-1 h-full">
             <div className="aspect-square bg-black">
               <img 
-                src="/lovable-uploads/ab79bb4a-2972-4650-b07f-7f76a7fe1a00.png" 
+                src="/lovable-uploads/c810e4f0-4dfe-4015-8351-942038396c88.png" 
                 alt="Student Life Award Trophy" 
                 className="w-full h-full object-cover"
               />
@@ -69,9 +69,9 @@ const EventsSection = () => {
               </p>
               <div className="flex items-center text-sm text-gray-400">
                 <Calendar size={16} className="mr-2" />
-                <span>March 15, 2025</span>
+                <span>April 4, 2025</span>
                 <MapPin size={16} className="ml-4 mr-2" />
-                <span>University Center</span>
+                <span>11 Colonel By Dr, Ottawa, ON K1N 9J1</span>
               </div>
             </CardContent>
           </div>

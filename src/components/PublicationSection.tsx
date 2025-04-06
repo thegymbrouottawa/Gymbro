@@ -62,12 +62,12 @@ const PublicationSection = () => {
     {
       name: "Kaylen White",
       title: "Head of Marketing",
-      image: "/lovable-uploads/b0ce0206-3be6-4679-8a30-b18a413ea720.png"
+      image: "/lovable-uploads/291ec1fe-400c-4875-b9c6-af9d13b2d68a.png"
     },
     {
       name: "Maria Vukojevic",
       title: "Writer",
-      image: "/lovable-uploads/6eb1efe7-0af7-4cbb-b950-6119fae97655.png"
+      image: "/lovable-uploads/eeef0a51-6879-460f-b6e4-f31c81274ab5.png"
     },
     {
       name: "Eva Milinković",

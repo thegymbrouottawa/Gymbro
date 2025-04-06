@@ -38,7 +38,7 @@ const ProgramsSection = () => {
   ];
 
   return (
-    <Section id="programs" title="GymBro Programs" background="light">
+    <Section id="programs" title="The GymBro Programs" background="light">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Program Cards */}
         <div className="space-y-6">

@@ -12,7 +12,12 @@ interface GalleryImage {
 
 const GallerySection = () => {
   const galleryImages: GalleryImage[] = [
-    // All photos have been removed as requested
+    {
+      id: 1,
+      src: "/lovable-uploads/82f31ba1-a0bf-40bb-97a8-cd737015cb82.png",
+      alt: "GymBro Team",
+      category: "team"
+    }
   ];
 
   const categories = ["all", "team", "portraits", "events", "awards"];
