@@ -23,7 +23,7 @@ const EventsSection = () => {
       location: "University Center",
       description: "The GymBro club is honored to receive the Sports Club of the Year award at the annual Student Life Awards ceremony.",
       type: "award",
-      image: "/lovable-uploads/ba0ffc31-9a05-400f-b674-3baa7d68df52.png"
+      image: "/lovable-uploads/ab79bb4a-2972-4650-b07f-7f76a7fe1a00.png"
     },
     {
       id: 2,
@@ -51,7 +51,7 @@ const EventsSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-1 h-full">
             <div className="aspect-square bg-black">
               <img 
-                src="/lovable-uploads/ba0ffc31-9a05-400f-b674-3baa7d68df52.png" 
+                src="/lovable-uploads/ab79bb4a-2972-4650-b07f-7f76a7fe1a00.png" 
                 alt="Student Life Award Trophy" 
                 className="w-full h-full object-cover"
               />

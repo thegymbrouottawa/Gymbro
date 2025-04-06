@@ -62,7 +62,7 @@ const PublicationSection = () => {
     {
       name: "Ana Milinkovic",
       title: "Editor in Chief & Publisher",
-      image: "/images/publication-editor.jpg"
+      image: "/lovable-uploads/57e88d19-7a21-4894-91e6-05166b4f0768.png"
     },
     {
       name: "Kaylen White",
@@ -72,12 +72,12 @@ const PublicationSection = () => {
     {
       name: "Maria Vukojevic",
       title: "Writer",
-      image: "/images/publication-writer1.jpg"
+      image: "/lovable-uploads/6eb1efe7-0af7-4cbb-b950-6119fae97655.png"
     },
     {
       name: "Eva Milinković",
       title: "Writer",
-      image: "/images/publication-writer2.jpg"
+      image: "/lovable-uploads/62c9e1aa-b27c-4b89-851c-0bec91fdcb56.png"
     }
   ]);
   

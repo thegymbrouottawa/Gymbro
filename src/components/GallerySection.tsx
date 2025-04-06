@@ -12,36 +12,7 @@ interface GalleryImage {
 
 const GallerySection = () => {
   const galleryImages: GalleryImage[] = [
-    {
-      id: 1,
-      src: "/lovable-uploads/fdb94f34-753e-43a7-90ff-54486cca094b.png",
-      alt: "Team member",
-      category: "team"
-    },
-    {
-      id: 2,
-      src: "/lovable-uploads/94e11ef1-148d-4754-a942-3d58b3690a88.png",
-      alt: "Team member portrait",
-      category: "portraits"
-    },
-    {
-      id: 3,
-      src: "/lovable-uploads/95ef6e93-cc49-433e-b719-9c02b580c4f3.png",
-      alt: "Award ceremony",
-      category: "events"
-    },
-    {
-      id: 4,
-      src: "/lovable-uploads/ba0ffc31-9a05-400f-b674-3baa7d68df52.png",
-      alt: "Student Life Awards trophy",
-      category: "awards"
-    },
-    {
-      id: 5,
-      src: "/lovable-uploads/7705dabc-2de9-4b37-9ed4-9ef324705426.png",
-      alt: "Team member portrait",
-      category: "portraits"
-    }
+    // All photos have been removed as requested
   ];
 
   const categories = ["all", "team", "portraits", "events", "awards"];
