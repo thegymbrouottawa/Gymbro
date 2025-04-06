@@ -35,9 +35,18 @@ const AboutSection = () => {
           We are currently the first and the only bodybuilding club on campus. We offer free training resources for students who are eager to build muscle, have proper education on fitness and also be able to learn the technical aspect of bodybuilding.
         </p>
         
-        <p className="text-lg">
+        <p className="text-lg mb-8">
           Today, we are a club with 82 members, over 1,000 followers on social media, and a growing presence in the student fitness community! We have successfully hosted multiple training sessions, collaborated with fitness professionals, and built a supportive space where students can train, learn, and grow together. Our impact continues to expand, inspiring more students to take control of their health and fitness while fostering a strong sense of community at the University of Ottawa.
         </p>
+        
+        <div className="mt-8 mb-12">
+          <img 
+            src="/lovable-uploads/e91d1d78-1823-4094-8e9a-b99e3a102f29.png" 
+            alt="The GymBro Team Award Ceremony" 
+            className="w-full md:w-3/4 mx-auto h-auto rounded-lg shadow-xl"
+          />
+          <p className="text-center text-gray-600 mt-2 italic">The GymBro team celebrating at the Student Life Awards ceremony</p>
+        </div>
       </div>
 
       <div className="mt-16">
