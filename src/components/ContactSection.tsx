@@ -17,7 +17,7 @@ const ContactSection = () => {
     },
     {
       platform: "Linktree",
-      url: "https://linktr.ee/thegymbro",
+      url: "https://linktr.ee/the_gymbro",
       icon: LinkIcon
     },
     {
