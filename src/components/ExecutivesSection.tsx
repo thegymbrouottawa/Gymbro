@@ -24,7 +24,7 @@ const ExecutivesSection = () => {
       id: 2,
       name: "Ethan S. Tran",
       title: "VP of Internal Affairs",
-      image: "/images/vp-internal.jpg",
+      image: "/lovable-uploads/3c4a54da-bf35-4e05-a22a-578a9914185a.png",
       bio: "Ethan oversees the internal operations of the club, ensuring everything runs smoothly for our members."
     },
     {
@@ -45,7 +45,7 @@ const ExecutivesSection = () => {
       id: 5,
       name: "Noah Ramos",
       title: "VP of Marketing",
-      image: "/images/vp-marketing.jpg",
+      image: "/lovable-uploads/ff985261-327c-425f-bbd6-0954e24c59ca.png",
       bio: "Noah leads our marketing strategies to expand our reach and promote fitness awareness throughout campus."
     },
     {
@@ -73,7 +73,7 @@ const ExecutivesSection = () => {
       id: 9,
       name: "Sarah Johnson",
       title: "VP of Social Affairs",
-      image: "/images/vp-social.jpg",
+      image: "/lovable-uploads/a6ac2db6-035f-4ed1-b3fa-a22ddbec0bc7.png",
       bio: "Sarah organizes social events and activities to strengthen our fitness community and build relationships."
     }
   ]);

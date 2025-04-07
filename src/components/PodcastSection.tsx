@@ -31,9 +31,23 @@ const PodcastSection = () => {
           <p className="text-lg mb-6">
             Whether you're a beginner trying to navigate the gym or an experienced lifter looking for expert advice, or a student at University of Ottawa looking for tips or tricks with local resources, this podcast is for you.
           </p>
-          <p className="text-lg">
+          <p className="text-lg mb-6">
             Beyond education, the GymBro Podcast is about connection. There's a lot of false information out there, and we aim to cut through the noise by delivering real, science-backed fitness knowledge from credible sources. By making fitness approachable and fun, we hope to build a strong Ottawa-based fitness community where students feel supported on their journey.
           </p>
+          <Button 
+            asChild
+            className="bg-gymbro-orange hover:bg-gymbro-orange/90 text-white flex items-center gap-2 mt-4"
+          >
+            <a 
+              href="https://open.spotify.com/episode/4LtsPYPRoMfizj8ZbSx2jL?si=ZKgpdxkMTWGauP7WlFdwBg&t=69&context=spotify%3Ashow%3A6mPuzVG6KOvFe7PAFsebbN" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Mic size={18} />
+              Listen on Spotify
+              <ExternalLink size={16} />
+            </a>
+          </Button>
         </div>
         
         <div>

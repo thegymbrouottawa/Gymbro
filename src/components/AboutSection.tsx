@@ -5,7 +5,7 @@ import Section from "./Section";
 const AboutSection = () => {
   return (
     <Section id="about" title="About Us" background="light">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="grid grid-cols-1 gap-12">
         <div>
           <p className="text-lg mb-4">
             The GymBro is a club founded on community, the common interest of betterment and motivation for our student body. With the goal of filling the gap in fitness knowledge and accessibility, we strive to provide students with the resources and guidance they need to succeed in their fitness journeys.
@@ -16,13 +16,6 @@ const AboutSection = () => {
           <p className="text-lg mb-4">
             Through this, he saw an opportunity to change that. His vision led to him creating The GymBro, a club for the common person who wants to learn how to better themselves through fitness in a safe, affordable and accessible way at the University of Ottawa.
           </p>
-        </div>
-        <div>
-          <img 
-            src="/images/gym-image.jpg" 
-            alt="The GymBro Community" 
-            className="w-full h-auto rounded-lg shadow-xl"
-          />
         </div>
       </div>
 

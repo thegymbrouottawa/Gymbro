@@ -7,12 +7,12 @@ const ContactSection = () => {
   const contacts = [
     {
       platform: "Instagram",
-      url: "https://www.instagram.com/thegymbro_uottawa/",
+      url: "https://www.instagram.com/uottawagymbroclubb/?igshid=NTc4MTIwNjQ2YQ%3D%3D",
       icon: Instagram
     },
     {
       platform: "LinkedIn",
-      url: "https://www.linkedin.com/company/the-gymbro/",
+      url: "https://ca.linkedin.com/company/the-gymbro",
       icon: Linkedin
     },
     {
