@@ -17,7 +17,7 @@ const ExecutivesSection = () => {
       id: 1,
       name: "Farnam Parcham",
       title: "President",
-      image: "/images/president.jpg",
+      image: "/lovable-uploads/0980d6c4-c8d5-47cb-92cf-71bbcee386d6.png",
       bio: "As the President of The GymBro, Farnam leads the club with passion and dedication to fitness and student wellbeing."
     },
     {

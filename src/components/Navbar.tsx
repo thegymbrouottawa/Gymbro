@@ -44,12 +44,12 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center">
-            {/* Updated logo with background removed and orange tint applied */}
-            <div className="relative h-14 md:h-16 w-auto">
+            {/* Updated logo with the new image */}
+            <div className="relative h-16 md:h-20 w-auto">
               <img 
-                src="/lovable-uploads/5a89db8d-9d11-4a95-bed1-46c0f2a159f1.png" 
+                src="/lovable-uploads/a3621d93-6db4-4113-abc6-88af47e95025.png" 
                 alt="The GymBro Logo" 
-                className="h-full w-auto filter brightness-125 drop-shadow-[0_0_5px_rgba(255,128,0,0.3)]" 
+                className="h-full w-auto filter drop-shadow-[0_0_5px_rgba(255,128,0,0.3)]" 
               />
             </div>
           </Link>
