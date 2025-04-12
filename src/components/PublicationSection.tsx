@@ -3,18 +3,12 @@ import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, PlusCircle } from "lucide-react";
 import Section from "./Section";
-
-interface Publication {
-  id: number;
-  title: string;
-  excerpt: string;
-  coverImage: string;
-  author: string;
-  date: string;
-  content: string;
-}
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
 
 interface TeamMember {
   name: string;
@@ -24,37 +18,10 @@ interface TeamMember {
 }
 
 const PublicationSection = () => {
-  const [publications, setPublications] = useState<Publication[]>([
-    {
-      id: 1,
-      title: "The Science of Muscle Recovery",
-      excerpt: "Understand the key physiological processes behind muscle recovery and how to optimize your rest days.",
-      coverImage: "/images/publication-1.jpg",
-      author: "Ana Milinkovic",
-      date: "March 15, 2025",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin fringilla magna vitae elit sagittis maximus. Quisque efficitur felis sed ligula faucibus, ac dictum lorem elementum. Vivamus varius purus non placerat congue..."
-    },
-    {
-      id: 2,
-      title: "Nutrition Myths Debunked",
-      excerpt: "Separating fact from fiction in the world of fitness nutrition and supplement industry.",
-      coverImage: "/images/publication-2.jpg",
-      author: "Eva Milinković",
-      date: "February 28, 2025",
-      content: "Nulla porttitor augue at diam facilisis, id rhoncus erat suscipit. Fusce in risus ipsum. Duis eget felis a augue lobortis dictum. Nulla facilisi. Pellentesque efficitur posuere libero, quis ultricies sem malesuada sed..."
-    },
-    {
-      id: 3,
-      title: "Mindfulness & Strength Training",
-      excerpt: "How incorporating mindfulness practices can dramatically improve your lifting performance.",
-      coverImage: "/images/publication-3.jpg",
-      author: "Maria Vukojevic",
-      date: "January 10, 2025",
-      content: "Phasellus blandit nisl ut purus convallis pharetra. Mauris vitae neque nec nibh lobortis consequat. Vestibulum ornare, eros eget fermentum lobortis, ipsum orci tincidunt urna, eu pulvinar ligula eros ac tortor..."
-    }
-  ]);
-
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([
+  const [publications, setPublications] = useState<any[]>([]);
+  const { toast } = useToast();
+  
+  const [teamMembers] = useState<TeamMember[]>([
     {
       name: "Ana Milinkovic",
       title: "Editor in Chief & Publisher",
@@ -81,6 +48,35 @@ const PublicationSection = () => {
     }
   ]);
 
+  const handleAddPublication = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    
+    const newPublication = {
+      id: Date.now(),
+      title: formData.get('title'),
+      excerpt: formData.get('excerpt'),
+      coverImage: formData.get('coverImage') || '/images/publication-placeholder.jpg',
+      author: formData.get('author'),
+      date: new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }),
+      content: formData.get('content')
+    };
+    
+    setPublications([newPublication, ...publications]);
+    
+    toast({
+      title: "Publication Added",
+      description: "Your publication has been successfully added.",
+    });
+    
+    form.reset();
+  };
+  
   return (
     <Section id="publication" title="The GymBro Publication" background="dark">
       <div className="mb-12">
@@ -103,6 +99,17 @@ const PublicationSection = () => {
         <p className="text-lg">
           At its core, The GymBro's Publication Team is an assembly of students at the University of Ottawa who are driven and passionate about health and fitness. This group of peers is dedicated to acquiring the proper knowledge to develop writing that will help the rest of the student body in their fitness journeys.
         </p>
+        
+        <div className="mt-8">
+          <a 
+            href="https://docs.google.com/document/d/1n8O32KiApyeBWfGMx_t1B_9rVJnotzxr/edit?usp=sharing&ouid=100636181622616651003&rtpof=true&sd=true" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-gymbro-orange hover:underline"
+          >
+            Our Constitution <ExternalLink size={16} />
+          </a>
+        </div>
       </div>
 
       <Tabs defaultValue="publications" className="w-full">
@@ -122,45 +129,93 @@ const PublicationSection = () => {
         </TabsList>
         
         <TabsContent value="publications" className="mt-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {publications.map((publication) => (
-              <div key={publication.id} className="bg-gymbro-darkGray rounded-lg overflow-hidden shadow-lg border border-gray-800">
-                <div className="h-48 overflow-hidden">
-                  <img 
-                    src={publication.coverImage} 
-                    alt={publication.title} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-2">{publication.title}</h3>
-                  <p className="text-gray-300 mb-4">{publication.excerpt}</p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-400">{publication.author} • {publication.date}</span>
-                    
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="ghost" className="text-gymbro-orange hover:text-white">
-                          Read More <ChevronRight size={16} />
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-3xl">
-                        <DialogHeader>
-                          <DialogTitle className="text-2xl">{publication.title}</DialogTitle>
-                        </DialogHeader>
-                        <div className="mt-4">
-                          <div className="flex items-center justify-between mb-6">
-                            <span className="text-sm text-gray-500">{publication.author} • {publication.date}</span>
+          {publications.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {publications.map((publication) => (
+                <div key={publication.id} className="bg-gymbro-darkGray rounded-lg overflow-hidden shadow-lg border border-gray-800">
+                  <div className="h-48 overflow-hidden">
+                    <img 
+                      src={publication.coverImage} 
+                      alt={publication.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-2">{publication.title}</h3>
+                    <p className="text-gray-300 mb-4">{publication.excerpt}</p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-400">{publication.author} • {publication.date}</span>
+                      
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="ghost" className="text-gymbro-orange hover:text-white">
+                            Read More <ChevronRight size={16} />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-3xl">
+                          <DialogHeader>
+                            <DialogTitle className="text-2xl">{publication.title}</DialogTitle>
+                          </DialogHeader>
+                          <div className="mt-4">
+                            <div className="flex items-center justify-between mb-6">
+                              <span className="text-sm text-gray-500">{publication.author} • {publication.date}</span>
+                            </div>
+                            <p className="text-lg leading-relaxed">{publication.content}</p>
                           </div>
-                          <p className="text-lg leading-relaxed">{publication.content}</p>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
+                        </DialogContent>
+                      </Dialog>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8">
+              <p className="text-gray-400 mb-4">No publications yet. Be the first to add one!</p>
+            </div>
+          )}
+          
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="mt-8 bg-gymbro-orange hover:bg-gymbro-orange/90 mx-auto flex items-center gap-2">
+                <PlusCircle size={16} />
+                Add New Publication
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-2xl">
+              <DialogHeader>
+                <DialogTitle>Add New Publication</DialogTitle>
+              </DialogHeader>
+              <form onSubmit={handleAddPublication} className="space-y-4">
+                <div>
+                  <label htmlFor="title" className="block text-sm font-medium mb-1">Title</label>
+                  <Input id="title" name="title" required />
+                </div>
+                <div>
+                  <label htmlFor="excerpt" className="block text-sm font-medium mb-1">Excerpt</label>
+                  <Textarea id="excerpt" name="excerpt" rows={2} required />
+                </div>
+                <div>
+                  <label htmlFor="author" className="block text-sm font-medium mb-1">Author</label>
+                  <Input id="author" name="author" required />
+                </div>
+                <div>
+                  <label htmlFor="coverImage" className="block text-sm font-medium mb-1">Cover Image URL</label>
+                  <Input id="coverImage" name="coverImage" placeholder="https://example.com/image.jpg" />
+                </div>
+                <div>
+                  <label htmlFor="content" className="block text-sm font-medium mb-1">Content</label>
+                  <Textarea id="content" name="content" rows={8} required />
+                </div>
+                <div className="flex justify-end gap-2 pt-2">
+                  <DialogTrigger asChild>
+                    <Button variant="outline" type="button">Cancel</Button>
+                  </DialogTrigger>
+                  <Button type="submit" className="bg-gymbro-orange hover:bg-gymbro-orange/90">Publish</Button>
+                </div>
+              </form>
+            </DialogContent>
+          </Dialog>
         </TabsContent>
         
         <TabsContent value="team" className="mt-0">

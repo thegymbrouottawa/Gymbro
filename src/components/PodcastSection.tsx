@@ -57,34 +57,16 @@ const PodcastSection = () => {
               <h3 className="text-3xl font-bold">Listen Now</h3>
             </div>
             
-            <div className="space-y-4 mb-8">
-              <Card className="bg-gymbro-darkGray border-gray-700">
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <h4 className="font-bold">Episode 12: Nutrition Myths Debunked</h4>
-                      <p className="text-sm text-gray-400">April 2, 2025</p>
-                    </div>
-                    <Button variant="ghost" size="icon" className="text-gymbro-orange">
-                      <ExternalLink size={20} />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card className="bg-gymbro-darkGray border-gray-700">
-                <CardContent className="p-4">
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <h4 className="font-bold">Episode 11: Building Muscle as a Student</h4>
-                      <p className="text-sm text-gray-400">March 26, 2025</p>
-                    </div>
-                    <Button variant="ghost" size="icon" className="text-gymbro-orange">
-                      <ExternalLink size={20} />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
+            <div className="w-full h-[380px] mb-6">
+              <iframe 
+                src="https://open.spotify.com/embed/episode/4LtsPYPRoMfizj8ZbSx2jL?si=ZKgpdxkMTWGauP7WlFdwBg&context=spotify%3Ashow%3A6mPuzVG6KOvFe7PAFsebbN&nd=1&dlsi=b4de4d8e0ab84290"
+                width="100%" 
+                height="352" 
+                frameBorder="0" 
+                allowTransparency={true} 
+                allow="encrypted-media" 
+                className="rounded-md"
+              ></iframe>
             </div>
             
             <div className="border-t border-gray-700 pt-6">

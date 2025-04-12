@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import Section from "./Section";
@@ -130,19 +129,6 @@ const ExecutivesSection = () => {
             </CardContent>
           </Card>
         ))}
-        
-        {/* Add Executive Card */}
-        <Card className="bg-gymbro-darkGray text-white border border-gray-800 flex flex-col justify-center items-center">
-          <CardContent className="p-6 text-center">
-            <div className="mb-4 rounded-full bg-gray-800 flex items-center justify-center w-48 h-48 mx-auto">
-              <span className="text-6xl text-gymbro-orange">+</span>
-            </div>
-            <h3 className="text-xl font-bold mb-2">Add Executive Member</h3>
-            <p className="text-gray-400">
-              New executive members can be added through the admin panel.
-            </p>
-          </CardContent>
-        </Card>
       </div>
     </Section>
   );

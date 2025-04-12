@@ -1,5 +1,6 @@
 
 import { CheckCircle } from "lucide-react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { 
   Accordion, 
@@ -10,8 +11,41 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import Section from "./Section";
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogTrigger 
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useToast } from "@/hooks/use-toast";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 const ProgramsSection = () => {
+  const { toast } = useToast();
+  
+  const [weekdays] = useState([
+    { id: "monday", label: "Monday" },
+    { id: "tuesday", label: "Tuesday" },
+    { id: "wednesday", label: "Wednesday" },
+    { id: "thursday", label: "Thursday" },
+    { id: "friday", label: "Friday" },
+    { id: "saturday", label: "Saturday" },
+    { id: "sunday", label: "Sunday" },
+  ]);
+
+  const [gyms] = useState([
+    { id: "montpetit", label: "Montpetit Gym" },
+    { id: "minto", label: "Minto Sports Complex" },
+    { id: "lees", label: "Lees Campus Gym" }
+  ]);
+  
   const programs = [
     {
       id: "personal-trainer",
@@ -37,6 +71,22 @@ const ProgramsSection = () => {
     }
   ];
 
+  const handlePersonalTrainerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    toast({
+      title: "Application Submitted",
+      description: "Your application for the Personal Trainer Program has been submitted successfully.",
+    });
+  };
+
+  const handleMatchmakerSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    toast({
+      title: "Application Submitted",
+      description: "Your application for the Matchmaker Program has been submitted successfully.",
+    });
+  };
+
   return (
     <Section id="programs" title="The GymBro Programs" background="light">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -55,9 +105,238 @@ const ProgramsSection = () => {
                     </li>
                   ))}
                 </ul>
-                <Button className="w-full bg-gymbro-orange hover:bg-gymbro-orange/90">
-                  Apply Now
-                </Button>
+                
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="w-full bg-gymbro-orange hover:bg-gymbro-orange/90">
+                      Apply Now
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+                    <DialogHeader>
+                      <DialogTitle>{program.title} Application</DialogTitle>
+                    </DialogHeader>
+                    
+                    {program.id === "personal-trainer" ? (
+                      <form onSubmit={handlePersonalTrainerSubmit} className="space-y-4 mt-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="fullName" className="block text-sm font-medium mb-1">Full Name</label>
+                            <Input id="fullName" name="fullName" required placeholder="Your full name" />
+                          </div>
+                          <div>
+                            <label htmlFor="studentNumber" className="block text-sm font-medium mb-1">Student Number</label>
+                            <Input id="studentNumber" name="studentNumber" required placeholder="Your student number" />
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <label htmlFor="email" className="block text-sm font-medium mb-1">uOttawa Email</label>
+                          <Input id="email" name="email" type="email" required placeholder="youremail@uottawa.ca" />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-sm font-medium mb-1">Preferred Personal Trainer</label>
+                          <Select name="preferredTrainer">
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a trainer" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="nayan">Nayan Kar</SelectItem>
+                              <SelectItem value="justin">Justin Cocchio</SelectItem>
+                              <SelectItem value="mehdi">Mehdi Bibi</SelectItem>
+                              <SelectItem value="axel">Axel</SelectItem>
+                              <SelectItem value="noPreference">No preference</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        
+                        <div className="flex items-start space-x-2">
+                          <Checkbox id="agreement" name="agreement" required />
+                          <div className="grid gap-1.5 leading-none">
+                            <label
+                              htmlFor="agreement"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              I agree to be contacted by The GymBro regarding my application
+                            </label>
+                            <p className="text-sm text-muted-foreground">
+                              The GymBro may contact you via email to discuss your application and match you with a personal trainer.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-end gap-2 pt-4">
+                          <DialogTrigger asChild>
+                            <Button variant="outline" type="button">Cancel</Button>
+                          </DialogTrigger>
+                          <Button type="submit" className="bg-gymbro-orange hover:bg-gymbro-orange/90">Submit Application</Button>
+                        </div>
+                      </form>
+                    ) : (
+                      <form onSubmit={handleMatchmakerSubmit} className="space-y-4 mt-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="fullName" className="block text-sm font-medium mb-1">Full Name</label>
+                            <Input id="fullName" name="fullName" required placeholder="Your full name" />
+                          </div>
+                          <div>
+                            <label htmlFor="studentNumber" className="block text-sm font-medium mb-1">Student Number</label>
+                            <Input id="studentNumber" name="studentNumber" required placeholder="Your student number" />
+                          </div>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="email" className="block text-sm font-medium mb-1">uOttawa Email</label>
+                            <Input id="email" name="email" type="email" required placeholder="youremail@uottawa.ca" />
+                          </div>
+                          <div>
+                            <label htmlFor="yearOfStudy" className="block text-sm font-medium mb-1">Year of Study</label>
+                            <Select name="yearOfStudy">
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select year" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="1">1st Year</SelectItem>
+                                <SelectItem value="2">2nd Year</SelectItem>
+                                <SelectItem value="3">3rd Year</SelectItem>
+                                <SelectItem value="4">4th Year</SelectItem>
+                                <SelectItem value="5+">5th Year or Higher</SelectItem>
+                                <SelectItem value="graduate">Graduate Student</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label htmlFor="instagram" className="block text-sm font-medium mb-1">Instagram Handle</label>
+                            <Input id="instagram" name="instagram" placeholder="@yourusername" />
+                          </div>
+                          <div>
+                            <label htmlFor="facebook" className="block text-sm font-medium mb-1">Facebook Profile</label>
+                            <Input id="facebook" name="facebook" placeholder="Your Facebook profile URL" />
+                          </div>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium mb-1">Your Gender</label>
+                            <RadioGroup defaultValue="male" name="gender">
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="male" id="male" />
+                                <Label htmlFor="male">Male</Label>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="female" id="female" />
+                                <Label htmlFor="female">Female</Label>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="other" id="other" />
+                                <Label htmlFor="other">Other</Label>
+                              </div>
+                            </RadioGroup>
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-1">Preferred Partner's Gender</label>
+                            <RadioGroup defaultValue="any" name="preferredGender">
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="male" id="p-male" />
+                                <Label htmlFor="p-male">Male</Label>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="female" id="p-female" />
+                                <Label htmlFor="p-female">Female</Label>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <RadioGroupItem value="any" id="p-any" />
+                                <Label htmlFor="p-any">No Preference</Label>
+                              </div>
+                            </RadioGroup>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <label className="block text-sm font-medium mb-1">Workout Goals</label>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <div className="flex items-center space-x-2">
+                              <Checkbox id="strength" name="goals[]" value="strength" />
+                              <label htmlFor="strength">Strength Training</label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Checkbox id="bodybuilding" name="goals[]" value="bodybuilding" />
+                              <label htmlFor="bodybuilding">Bodybuilding</label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Checkbox id="cardio" name="goals[]" value="cardio" />
+                              <label htmlFor="cardio">Cardio</label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Checkbox id="weightLoss" name="goals[]" value="weightLoss" />
+                              <label htmlFor="weightLoss">Weight Loss</label>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                              <Checkbox id="generalFitness" name="goals[]" value="generalFitness" />
+                              <label htmlFor="generalFitness">General Fitness</label>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <label className="block text-sm font-medium mb-1">Preferred Workout Days</label>
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                            {weekdays.map((day) => (
+                              <div key={day.id} className="flex items-center space-x-2">
+                                <Checkbox id={day.id} name="days[]" value={day.id} />
+                                <label htmlFor={day.id}>{day.label}</label>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <label className="block text-sm font-medium mb-1">Preferred Gym</label>
+                          <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                            {gyms.map((gym) => (
+                              <div key={gym.id} className="flex items-center space-x-2">
+                                <Checkbox id={gym.id} name="gyms[]" value={gym.id} />
+                                <label htmlFor={gym.id}>{gym.label}</label>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        <div>
+                          <label htmlFor="comments" className="block text-sm font-medium mb-1">Additional Comments or Questions</label>
+                          <Textarea id="comments" name="comments" placeholder="Any additional information you'd like to share..." />
+                        </div>
+                        
+                        <div className="flex items-start space-x-2">
+                          <Checkbox id="agreement" name="agreement" required />
+                          <div className="grid gap-1.5 leading-none">
+                            <label
+                              htmlFor="agreement"
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              I agree to be contacted by The GymBro regarding my application
+                            </label>
+                            <p className="text-sm text-muted-foreground">
+                              The GymBro may contact you via email to discuss your application and match you with a gym partner.
+                            </p>
+                          </div>
+                        </div>
+                        
+                        <div className="flex justify-end gap-2 pt-4">
+                          <DialogTrigger asChild>
+                            <Button variant="outline" type="button">Cancel</Button>
+                          </DialogTrigger>
+                          <Button type="submit" className="bg-gymbro-orange hover:bg-gymbro-orange/90">Submit Application</Button>
+                        </div>
+                      </form>
+                    )}
+                  </DialogContent>
+                </Dialog>
               </CardContent>
             </Card>
           ))}
@@ -108,20 +387,6 @@ const ProgramsSection = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
-          
-          <Separator className="my-6" />
-          
-          <div className="mt-6">
-            <h4 className="text-xl font-bold mb-4">Ready to Get Started?</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <Button className="bg-gymbro-orange hover:bg-gymbro-orange/90 h-auto py-3">
-                Apply for Personal Trainer
-              </Button>
-              <Button variant="outline" className="border-gymbro-orange text-gymbro-orange hover:bg-gymbro-orange/10 h-auto py-3">
-                Find a Gym Partner
-              </Button>
-            </div>
-          </div>
         </div>
       </div>
     </Section>
