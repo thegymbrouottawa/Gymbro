@@ -13,7 +13,7 @@ const Hero = () => {
   return (
     <div 
       className="hero-section min-h-[90vh] sm:min-h-screen flex items-center justify-center px-4 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('/lovable-uploads/06f6cc9f-421f-4831-9019-9559b37de6bc.png')" }}
+      style={{ backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('/lovable-uploads/867ee228-92be-4a53-825d-3af2db19efe3.png')" }}
     >
       <div className="container mx-auto text-center text-white pt-16 sm:pt-0">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 animate-fadeIn">
