@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ChevronRight, PlusCircle } from "lucide-react";
+import { ChevronRight, PlusCircle, ExternalLink } from "lucide-react";
 import Section from "./Section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
