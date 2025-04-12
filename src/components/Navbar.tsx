@@ -47,7 +47,7 @@ const Navbar = () => {
             {/* Updated logo with the new image */}
             <div className="relative h-16 md:h-20 w-auto">
               <img 
-                src="/lovable-uploads/a3621d93-6db4-4113-abc6-88af47e95025.png" 
+                src="/lovable-uploads/9a6bbaf1-469d-440e-962f-1d156c551215.png" 
                 alt="The GymBro Logo" 
                 className="h-full w-auto filter drop-shadow-[0_0_5px_rgba(255,128,0,0.3)]" 
               />
