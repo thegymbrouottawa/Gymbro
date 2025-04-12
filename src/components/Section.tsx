@@ -17,9 +17,12 @@ const Section = ({ id, title, children, className = "", background = "light" }: 
   };
 
   return (
-    <section id={id} className={`py-20 ${bgClasses[background]} ${className}`}>
-      <div className="container mx-auto px-4">
-        <h2 className="section-heading text-center mb-12">{title}</h2>
+    <section 
+      id={id} 
+      className={`py-12 sm:py-16 md:py-20 ${bgClasses[background]} ${className} overflow-fix`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="section-heading text-center mb-8 sm:mb-12">{title}</h2>
         {children}
       </div>
     </section>

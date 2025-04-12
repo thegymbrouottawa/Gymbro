@@ -3,11 +3,17 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useIsMobile } from '@/hooks/use-mobile';
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger
+} from '@/components/ui/sheet';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-
+  const isMobile = useIsMobile();
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -44,8 +50,8 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center">
-            {/* Updated logo with the new image */}
-            <div className="relative h-16 md:h-20 w-auto">
+            {/* Logo with responsive sizing */}
+            <div className="relative h-12 sm:h-14 md:h-16 w-auto">
               <img 
                 src="/lovable-uploads/9a6bbaf1-469d-440e-962f-1d156c551215.png" 
                 alt="The GymBro Logo" 
@@ -54,47 +60,59 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
+          {/* Desktop Navigation - hidden on mobile */}
+          <nav className="hidden lg:flex items-center space-x-3 xl:space-x-6">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="nav-link text-white hover:text-gymbro-orange transition-colors duration-300"
+                className="nav-link text-white hover:text-gymbro-orange transition-colors duration-300 text-sm xl:text-base"
               >
                 {link.name}
               </a>
             ))}
           </nav>
 
-          {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden text-white"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </Button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className="md:hidden bg-black">
-            <div className="flex flex-col space-y-4 py-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-white hover:text-gymbro-orange px-4 py-2"
-                  onClick={() => setIsOpen(false)}
+          {/* Mobile Navigation using Sheet component for better UX */}
+          <div className="lg:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-white hover:bg-black/20"
+                  aria-label="Open Menu"
                 >
-                  {link.name}
-                </a>
-              ))}
-            </div>
+                  <Menu size={24} />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="bg-black p-0 w-full sm:max-w-sm">
+                <div className="flex flex-col h-full">
+                  <div className="p-4 border-b border-gray-800">
+                    <img 
+                      src="/lovable-uploads/9a6bbaf1-469d-440e-962f-1d156c551215.png" 
+                      alt="The GymBro Logo" 
+                      className="h-10 w-auto mx-auto" 
+                    />
+                  </div>
+                  <nav className="flex-1 overflow-auto py-6">
+                    <div className="flex flex-col space-y-1">
+                      {navLinks.map((link) => (
+                        <a
+                          key={link.name}
+                          href={link.href}
+                          className="text-white hover:text-gymbro-orange hover:bg-gray-900 px-6 py-3 transition-colors"
+                        >
+                          {link.name}
+                        </a>
+                      ))}
+                    </div>
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );

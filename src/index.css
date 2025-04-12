@@ -91,6 +91,24 @@
 
   body {
     @apply bg-background text-foreground;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Responsive font sizes */
+  h1 {
+    @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+
+  p {
+    @apply text-base sm:text-lg;
   }
 }
 
@@ -125,4 +143,49 @@
 
 .active-nav-link::after {
   @apply w-full;
+}
+
+/* Responsive utilities */
+.container {
+  @apply px-4 sm:px-6 lg:px-8;
+}
+
+/* Improve form elements on mobile */
+input, select, textarea, button {
+  @apply max-w-full;
+  font-size: 16px; /* Prevents iOS zoom on focus */
+}
+
+/* Responsive iframe for embedded content */
+.responsive-iframe {
+  @apply w-full aspect-video;
+}
+
+/* Fix for mobile overflow issues */
+.overflow-fix {
+  @apply overflow-x-hidden;
+}
+
+/* Touch-friendly elements */
+.touch-target {
+  @apply min-h-[44px] min-w-[44px];
+}
+
+/* Improved scrolling on mobile */
+@media (max-width: 640px) {
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Fix spacing issues on smaller screens */
+@media (max-width: 640px) {
+  .section-spacing {
+    @apply py-12;
+  }
+}
+
+/* Ensure images are responsive */
+img {
+  @apply max-w-full h-auto;
 }

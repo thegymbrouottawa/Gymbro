@@ -12,33 +12,33 @@ const Hero = () => {
 
   return (
     <div 
-      className="hero-section min-h-screen flex items-center justify-center px-4 bg-cover bg-center bg-no-repeat"
+      className="hero-section min-h-[90vh] sm:min-h-screen flex items-center justify-center px-4 bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('/lovable-uploads/06f6cc9f-421f-4831-9019-9559b37de6bc.png')" }}
     >
-      <div className="container mx-auto text-center text-white">
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fadeIn">
+      <div className="container mx-auto text-center text-white pt-16 sm:pt-0">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 animate-fadeIn">
           The <span className="text-gymbro-orange">GymBro</span>
         </h1>
-        <p className="text-xl md:text-2xl max-w-2xl mx-auto mb-8 animate-fadeIn">
+        <p className="text-base sm:text-xl md:text-2xl max-w-xs sm:max-w-md md:max-w-2xl mx-auto mb-6 sm:mb-8 animate-fadeIn">
           The first and only bodybuilding club at the University of Ottawa dedicated to making fitness accessible to all students.
         </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fadeIn">
+        <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 animate-fadeIn">
           <Button 
             onClick={scrollToAbout} 
-            className="bg-gymbro-orange hover:bg-gymbro-orange/90 text-white font-bold"
+            className="bg-gymbro-orange hover:bg-gymbro-orange/90 text-white font-bold touch-target"
           >
             Learn More
           </Button>
           <Button 
             variant="outline" 
-            className="border-white text-white hover:bg-white hover:text-black"
+            className="border-white text-white hover:bg-white hover:text-black touch-target mt-3 sm:mt-0"
             asChild
           >
             <a href="#programs">Join Us</a>
           </Button>
         </div>
-        <div className="mt-16 animate-bounce">
-          <button onClick={scrollToAbout} className="text-white">
+        <div className="mt-12 sm:mt-16 animate-bounce hidden sm:block">
+          <button onClick={scrollToAbout} className="text-white touch-target">
             <ArrowDown size={32} />
           </button>
         </div>
