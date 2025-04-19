@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -8,12 +7,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { ChevronRight, PlusCircle } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Section from "./Section";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
 
 interface TeamMember {
   name: string;
@@ -23,9 +18,6 @@ interface TeamMember {
 }
 
 const PublicationSection = () => {
-  const [publications, setPublications] = useState<any[]>([]);
-  const { toast } = useToast();
-
   const [teamMembers] = useState<TeamMember[]>([
     {
       name: "Ana Milinkovic",
@@ -52,36 +44,6 @@ const PublicationSection = () => {
       bio: "My name is Eva Milinkovic, and I am a writer for the publication team. I'm in my first year of Biomedical Science, and I'm excited to write and share with the student community about the scientific aspects of health and fitness. My main writing focus is mental well-being, sleep, and nutrition.\n\nI have been an athlete for many years: I've done a number of sports, such as boxing, rugby, and water polo. I now play as a goalie on the Gee Gees' and Team Ontario water polo teams, and have been a coach at my club for nearly 4 years.\n\nI've been deeply invested in my own fitness journey and have spent numerous hours conducting personal research to better understand what kind of training and nutrition works for me and why. Everyone has their own requirements, needs, and goals to meet when it comes to fitness, and by researching and writing about the varied kinds I hope I can make it that much easier for others to apply it to their own routines.\n\nMy goal is to provide easy and reliable access to information to students through a focus on the science behind fitness, ensuring they have the knowledge and resources needed to make informed decisions about their health, training, and overall well-being.",
     },
   ]);
-
-  const handleAddPublication = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    const newPublication = {
-      id: Date.now(),
-      title: formData.get("title"),
-      excerpt: formData.get("excerpt"),
-      coverImage:
-        formData.get("coverImage") || "/images/publication-placeholder.jpg",
-      author: formData.get("author"),
-      date: new Date().toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }),
-      content: formData.get("content"),
-    };
-
-    setPublications([newPublication, ...publications]);
-
-    toast({
-      title: "Publication Added",
-      description: "Your publication has been successfully added.",
-    });
-
-    form.reset();
-  };
 
   return (
     <Section id="publication" title="The GymBro Publication" background="dark">
@@ -134,220 +96,57 @@ const PublicationSection = () => {
           body in their fitness journeys.
         </p>
       </div>
-
-      <Tabs defaultValue="publications" className="w-full">
-        <TabsList className="w-full flex justify-center mb-8 bg-transparent">
-          <TabsTrigger
-            value="publications"
-            className="text-base px-6 data-[state=active]:bg-gymbro-orange data-[state=active]:text-white"
+      <h2 className="text-3xl font-bold text-gymbro-orange text-center mb-8">
+        Our Team
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {teamMembers.map((member, index) => (
+          <div
+            key={index}
+            className="bg-gymbro-darkGray rounded-lg overflow-hidden shadow-lg border border-gray-800"
           >
-            Latest Publications
-          </TabsTrigger>
-          <TabsTrigger
-            value="team"
-            className="text-base px-6 data-[state=active]:bg-gymbro-orange data-[state=active]:text-white"
-          >
-            Our Team
-          </TabsTrigger>
-        </TabsList>
-
-        <TabsContent value="publications" className="mt-0">
-          {publications.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {publications.map((publication) => (
-                <div
-                  key={publication.id}
-                  className="bg-gymbro-darkGray rounded-lg overflow-hidden shadow-lg border border-gray-800"
-                >
-                  <div className="h-48 overflow-hidden">
-                    <img
-                      src={publication.coverImage}
-                      alt={publication.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-2">
-                      {publication.title}
-                    </h3>
-                    <p className="text-gray-300 mb-4">{publication.excerpt}</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-400">
-                        {publication.author} • {publication.date}
-                      </span>
-
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            className="text-gymbro-orange hover:text-white"
-                          >
-                            Read More <ChevronRight size={16} />
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="max-w-3xl">
-                          <DialogHeader>
-                            <DialogTitle className="text-2xl">
-                              {publication.title}
-                            </DialogTitle>
-                          </DialogHeader>
-                          <div className="mt-4">
-                            <div className="flex items-center justify-between mb-6">
-                              <span className="text-sm text-gray-500">
-                                {publication.author} • {publication.date}
-                              </span>
-                            </div>
-                            <p className="text-lg leading-relaxed">
-                              {publication.content}
-                            </p>
-                          </div>
-                        </DialogContent>
-                      </Dialog>
-                    </div>
-                  </div>
-                </div>
-              ))}
+            <div className="h-64 overflow-hidden">
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-full h-full object-cover"
+              />
             </div>
-          ) : (
-            <div className="text-center py-8">
-              <p className="text-gray-400 mb-4">
-                No publications yet. Be the first to add one!
-              </p>
-            </div>
-          )}
+            <div className="p-4">
+              <h4 className="text-lg font-bold text-white">{member.name}</h4>
+              <p className="text-gymbro-orange mb-2">{member.title}</p>
 
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button className="mt-8 bg-gymbro-orange hover:bg-gymbro-orange/90 mx-auto flex items-center gap-2">
-                <PlusCircle size={16} />
-                Add New Publication
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-2xl">
-              <DialogHeader>
-                <DialogTitle>Add New Publication</DialogTitle>
-              </DialogHeader>
-              <form onSubmit={handleAddPublication} className="space-y-4">
-                <div>
-                  <label
-                    htmlFor="title"
-                    className="block text-sm font-medium mb-1"
-                  >
-                    Title
-                  </label>
-                  <Input id="title" name="title" required />
-                </div>
-                <div>
-                  <label
-                    htmlFor="excerpt"
-                    className="block text-sm font-medium mb-1"
-                  >
-                    Excerpt
-                  </label>
-                  <Textarea id="excerpt" name="excerpt" rows={2} required />
-                </div>
-                <div>
-                  <label
-                    htmlFor="author"
-                    className="block text-sm font-medium mb-1"
-                  >
-                    Author
-                  </label>
-                  <Input id="author" name="author" required />
-                </div>
-                <div>
-                  <label
-                    htmlFor="coverImage"
-                    className="block text-sm font-medium mb-1"
-                  >
-                    Cover Image URL
-                  </label>
-                  <Input
-                    id="coverImage"
-                    name="coverImage"
-                    placeholder="https://example.com/image.jpg"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="content"
-                    className="block text-sm font-medium mb-1"
-                  >
-                    Content
-                  </label>
-                  <Textarea id="content" name="content" rows={8} required />
-                </div>
-                <div className="flex justify-end gap-2 pt-2">
-                  <DialogTrigger asChild>
-                    <Button variant="outline" type="button">
-                      Cancel
-                    </Button>
-                  </DialogTrigger>
+              <Dialog>
+                <DialogTrigger asChild>
                   <Button
-                    type="submit"
-                    className="bg-gymbro-orange hover:bg-gymbro-orange/90"
+                    variant="ghost"
+                    className="text-gymbro-orange hover:text-white p-0"
                   >
-                    Publish
+                    Read Bio <ChevronRight size={16} />
                   </Button>
-                </div>
-              </form>
-            </DialogContent>
-          </Dialog>
-        </TabsContent>
-
-        <TabsContent value="team" className="mt-0">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {teamMembers.map((member, index) => (
-              <div
-                key={index}
-                className="bg-gymbro-darkGray rounded-lg overflow-hidden shadow-lg border border-gray-800"
-              >
-                <div className="h-64 overflow-hidden">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-4">
-                  <h4 className="text-lg font-bold text-white">
-                    {member.name}
-                  </h4>
-                  <p className="text-gymbro-orange mb-2">{member.title}</p>
-
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        className="text-gymbro-orange hover:text-white p-0"
-                      >
-                        Read Bio <ChevronRight size={16} />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="bg-gymbro-darkGray text-white border border-gray-800 max-w-3xl max-h-[80vh] overflow-y-auto">
-                      <DialogHeader>
-                        <DialogTitle className="text-2xl text-gymbro-orange">
-                          {member.name}
-                        </DialogTitle>
-                      </DialogHeader>
-                      <div className="mt-4">
-                        <h4 className="text-xl text-gymbro-orange mb-4">
-                          {member.title}
-                        </h4>
-                        {member.bio.split("\n\n").map((paragraph, index) => (
-                          <p key={index} className="text-gray-300 mb-4">
-                            {paragraph}
-                          </p>
-                        ))}
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                </div>
-              </div>
-            ))}
+                </DialogTrigger>
+                <DialogContent className="bg-gymbro-darkGray text-white border border-gray-800 max-w-3xl max-h-[80vh] overflow-y-auto">
+                  <DialogHeader>
+                    <DialogTitle className="text-2xl text-gymbro-orange">
+                      {member.name}
+                    </DialogTitle>
+                  </DialogHeader>
+                  <div className="mt-4">
+                    <h4 className="text-xl text-gymbro-orange mb-4">
+                      {member.title}
+                    </h4>
+                    {member.bio.split("\n\n").map((paragraph, i) => (
+                      <p key={i} className="text-gray-300 mb-4">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
           </div>
-        </TabsContent>
-      </Tabs>
+        ))}
+      </div>
     </Section>
   );
 };
