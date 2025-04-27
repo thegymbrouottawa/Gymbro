@@ -2,7 +2,7 @@ import emailjs from "emailjs-com";
 
 // Initialize Email.js with your user ID
 const initEmailJs = () => {
-  emailjs.init("SiYnPi7Orj4PK_WEV");
+  emailjs.init("KA5TQAZJ1PdtNuwIr");
 };
 
 // Function to send Personal Trainer application
@@ -11,8 +11,8 @@ export const sendPersonalTrainerApplication = async (
 ) => {
   try {
     const result = await emailjs.send(
-      "service_dpqb51e", // Replace with your Email.js service ID
-      "template_a31t6wi", // Replace with your Email.js template ID for personal trainer
+      "service_4u1ygz6", // Replace with your Email.js service ID
+      "template_mcwpyo5", // Replace with your Email.js template ID for personal trainer
       {
         fullName: formData.fullName,
         studentNumber: formData.studentNumber,
@@ -43,8 +43,8 @@ export const sendMatchmakerApplication = async (
     const selectedGyms = Object.keys(formData.gymOptions || {});
 
     const result = await emailjs.send(
-      "service_dpqb51e", // Email.js service ID
-      "template_5tdx6co", // Email.js template ID for matchmaker
+      "service_4u1ygz6", // Email.js service ID
+      "template_1pjwq8v", // Email.js template ID for matchmaker
       {
         fullName: formData.fullName,
         studentNumber: formData.studentNumber,
