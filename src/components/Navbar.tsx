@@ -1,30 +1,20 @@
-
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useIsMobile } from '@/hooks/use-mobile';
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger
-} from '@/components/ui/sheet';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Menu } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
-  
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
@@ -36,72 +26,76 @@ const Navbar = () => {
     { name: "Trainers", href: "#trainers" },
     { name: "Gallery", href: "#gallery" },
     { name: "Events", href: "#events" },
-    { name: "Contact", href: "#contact" }
+    { name: "Contact", href: "#contact" },
   ];
 
   return (
-    <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-black shadow-lg py-2' 
-          : 'bg-transparent py-4'
-      }`}
-    >
-      <div className="container mx-auto px-4">
+    <header className="fixed top-0 w-full z-50 bg-transparent">
+      <div
+        className={`transition-all duration-300 mx-auto mt-4 rounded-lg px-6 ${
+          isScrolled ? "shadow-lg py-3" : "shadow-md py-4"
+        } bg-white max-w-[90%] lg:max-w-6xl`}
+      >
         <div className="flex justify-between items-center">
+          {/* Logo */}
           <Link to="/" className="flex items-center">
-            {/* Logo with responsive sizing */}
-            <div className="relative h-12 sm:h-14 md:h-16 w-auto">
-              <img 
-                src="/lovable-uploads/9a6bbaf1-469d-440e-962f-1d156c551215.png" 
-                alt="The GymBro Logo" 
-                className="h-full w-auto filter drop-shadow-[0_0_5px_rgba(255,128,0,0.3)]" 
-              />
-            </div>
+            <img
+              src="/lovable-uploads/9a6bbaf1-469d-440e-962f-1d156c551215.png"
+              alt="The GymBro Logo"
+              className="h-28 w-auto drop-shadow-[0_4px_10px_rgba(0,0,0,0.4)]"
+            />
           </Link>
 
-          {/* Desktop Navigation - hidden on mobile */}
-          <nav className="hidden lg:flex items-center space-x-3 xl:space-x-6">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-6">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="nav-link text-white hover:text-gymbro-orange transition-colors duration-300 text-sm xl:text-base"
+                className="text-yellow-500 hover:text-yellow-400 transition-colors duration-200 text-base font-semibold"
               >
                 {link.name}
               </a>
             ))}
           </nav>
 
-          {/* Mobile Navigation using Sheet component for better UX */}
+          {/* Mobile Navigation */}
           <div className="lg:hidden">
             <Sheet>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="text-white hover:bg-black/20"
+                  className="text-yellow-500 hover:text-yellow-400"
                   aria-label="Open Menu"
                 >
-                  <Menu size={24} />
+                  <Menu size={26} />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="bg-black p-0 w-full sm:max-w-sm">
+              <SheetContent
+                side="right"
+                className="bg-white p-0 w-full sm:max-w-sm"
+              >
                 <div className="flex flex-col h-full">
-                  <div className="p-4 border-b border-gray-800">
-                    <img 
-                      src="/lovable-uploads/9a6bbaf1-469d-440e-962f-1d156c551215.png" 
-                      alt="The GymBro Logo" 
-                      className="h-10 w-auto mx-auto" 
-                    />
+                  <div className="p-5 border-b border-gray-200">
+                    <div className="flex flex-col items-center">
+                      <img
+                        src="/lovable-uploads/9a6bbaf1-469d-440e-962f-1d156c551215.png"
+                        alt="The GymBro Logo"
+                        className="h-20 w-auto drop-shadow-[0_4px_10px_rgba(0,0,0,0.4)]"
+                      />
+                      <span className="text-yellow-500 text-lg font-semibold mt-2">
+                        The GymBro
+                      </span>
+                    </div>
                   </div>
-                  <nav className="flex-1 overflow-auto py-6">
-                    <div className="flex flex-col space-y-1">
+                  <nav className="flex-1 overflow-auto py-8 px-6">
+                    <div className="flex flex-col space-y-3">
                       {navLinks.map((link) => (
                         <a
                           key={link.name}
                           href={link.href}
-                          className="text-white hover:text-gymbro-orange hover:bg-gray-900 px-6 py-3 transition-colors"
+                          className="text-yellow-500 hover:text-yellow-400 px-4 py-3 rounded-md transition-colors font-semibold text-base"
                         >
                           {link.name}
                         </a>
