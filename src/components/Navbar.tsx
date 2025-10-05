@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -8,6 +8,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
+  const location = useLocation();
+
+  // Contrôle ouverture du menu mobile
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,16 +21,20 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Détecte si on est sur la page d'accueil
+  const isHomePage = location.pathname === "/";
+
+  // Adapte les href en fonction de la route actuelle
   const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Executive Members", href: "#executives" },
-    { name: "Podcast", href: "#podcast" },
-    { name: "Publication", href: "#publication" },
-    { name: "Programs", href: "#programs" },
-    { name: "Trainers", href: "#trainers" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Events", href: "#events" },
-    { name: "Contact", href: "#contact" },
+    { name: "About", href: isHomePage ? "#about" : "/#about" },
+    { name: "Executive Members", href: isHomePage ? "#executives" : "/#executives" },
+    { name: "Podcast", href: isHomePage ? "#podcast" : "/#podcast" },
+    { name: "Publication", href: isHomePage ? "#publication" : "/#publication" },
+    { name: "Programs", href: isHomePage ? "#programs" : "/#programs" },
+    { name: "Trainers", href: isHomePage ? "#trainers" : "/#trainers" },
+    { name: "Gallery", href: isHomePage ? "#gallery" : "/#gallery" },
+    { name: "Events", href: isHomePage ? "#events" : "/#events" },
+    { name: "Contact", href: isHomePage ? "#contact" : "/#contact" },
   ];
 
   return (
@@ -61,17 +69,19 @@ const Navbar = () => {
 
           {/* Mobile Navigation */}
           <div className="lg:hidden">
-            <Sheet>
+            <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
               <SheetTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
                   className="text-yellow-500 hover:text-yellow-400"
                   aria-label="Open Menu"
+                  onClick={() => setSheetOpen(true)}
                 >
                   <Menu size={26} />
                 </Button>
               </SheetTrigger>
+
               <SheetContent
                 side="right"
                 className="bg-white p-0 w-full sm:max-w-sm"
@@ -95,6 +105,7 @@ const Navbar = () => {
                         <a
                           key={link.name}
                           href={link.href}
+                          onClick={() => setSheetOpen(false)} // Ferme menu au clic
                           className="text-yellow-500 hover:text-yellow-400 px-4 py-3 rounded-md transition-colors font-semibold text-base"
                         >
                           {link.name}
