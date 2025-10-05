@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import {
   Dialog,
   DialogContent,
@@ -44,6 +45,19 @@ const PublicationSection = () => {
       bio: "My name is Eva Milinkovic, and I am a writer for the publication team. I'm in my first year of Biomedical Science, and I'm excited to write and share with the student community about the scientific aspects of health and fitness. My main writing focus is mental well-being, sleep, and nutrition.\n\nI have been an athlete for many years: I've done a number of sports, such as boxing, rugby, and water polo. I now play as a goalie on the Gee Gees' and Team Ontario water polo teams, and have been a coach at my club for nearly 4 years.\n\nI've been deeply invested in my own fitness journey and have spent numerous hours conducting personal research to better understand what kind of training and nutrition works for me and why. Everyone has their own requirements, needs, and goals to meet when it comes to fitness, and by researching and writing about the varied kinds I hope I can make it that much easier for others to apply it to their own routines.\n\nMy goal is to provide easy and reliable access to information to students through a focus on the science behind fitness, ensuring they have the knowledge and resources needed to make informed decisions about their health, training, and overall well-being.",
     },
   ]);
+
+  const publications = [
+    {
+      title: "Fitness and Mental Health – How Movement Fuels Your Mind",
+      author: "Maria Vukojevic",
+      href: "/publications/fitness-mental-health",
+    },
+    {
+      title: "The Power of Sleep in Physical and Mental Fitness",
+      author: "Eva Milinkovic",
+      href: "/publications/power-of-sleep",
+    },
+  ];
 
   return (
     <Section id="publication" title="The GymBro Publication" background="dark">
@@ -145,6 +159,23 @@ const PublicationSection = () => {
               </Dialog>
             </div>
           </div>
+        ))}
+      </div>
+      <h2 className="text-3xl font-bold text-gymbro-orange text-center my-8">
+        Our Publications
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {publications.map((pub) => (
+          <Link
+            key={pub.href}
+            to={pub.href}
+            className="block border border-gray-800 rounded-lg p-6 hover:bg-gymbro-darkGray transition-colors"
+          >
+            <h3 className="text-xl font-semibold text-white mb-2">
+              {pub.title}
+            </h3>
+            <p className="text-gymbro-orange">By {pub.author}</p>
+          </Link>
         ))}
       </div>
     </Section>
